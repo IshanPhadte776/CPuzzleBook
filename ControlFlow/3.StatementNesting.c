@@ -1,0 +1,44 @@
+#include "def.h"
+
+#define ENUF 3
+#define EOS '\0'
+#define NEXT(i) input[i++]
+#define FALSE 0
+#define TRUE 1
+
+char input[] = ""; 
+
+main() {
+    char c;
+    int done, high, i, in , low;
+
+    // != beats =
+    while (c = NEXT(i) != EOS)
+        if (c < '0') low++;
+        else if (c > '9') high++;
+        else in++;
+
+    PRINT3(d,low,in,high);
+
+    i = low = in = high = 0; done = FALSE;
+
+    while ((c = NEXT(i)) != EOS && !done)
+        if (c < '0') low++;
+        else if ( c > '9') high++;
+        else in++;
+        if (low >= ENUF || high > ENUF || in >= ENUF)
+            done = TRUE;
+
+    PRINT3(d,low,in,high);
+
+    i = low = in = high = 0; done = FALSE;
+
+    while ((c = NEXT(i)) != EOS && !done)
+        if (c < '0') done = (++low == ENUF);
+        else if ( c > '9') done = (++high == ENUF);
+        else done = (++in == ENUF);
+    
+    PRINT3(d,low,in,high);
+
+
+}
